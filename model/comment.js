@@ -6,10 +6,18 @@ const commentSchema = new mongoose.Schema({
     ref: "Blog",
     required: true,
    },
-   userInfo:{
-    type: String,
-    required: true
-   }
+
+   user: { 
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'User',
+    required: true,
+    },
+
+    content:{
+        type: String,
+        required : true
+    },
+
 });
 
 module.exports = mongoose.model("Comment", commentSchema);

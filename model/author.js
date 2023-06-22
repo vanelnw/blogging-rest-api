@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 
 const authorSchema = new mongoose.Schema({
-    name:{
+    fullName:{
         type: String,
-        require: [true, "Please enter your name"],
+        required: true,
     },
     email:{
         type: String,
-        required:[true,"please provide an e-mail address"],
+        required:true,
         unique: true,
     }
 });
