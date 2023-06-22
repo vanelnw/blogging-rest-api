@@ -11,6 +11,8 @@ if(process.env.NODE_ENV !== "PRODUCTION"){
     })
 }
 
+require('./swagger')(app);
+
 //import routes
 const user = require("./controller/user");
 const author = require("./controller/author")
