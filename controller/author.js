@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Author = require("../model/author");
+const ErrorHandler = require("../utils/ErrorHandler");
 
 //get authors
 router.get("/all-authors", async(req, res) => {
@@ -8,7 +9,7 @@ router.get("/all-authors", async(req, res) => {
     const authors = await Author.find();
     res.json(authors);
   } catch(error) {
-    res.status(500).json({error: "internat server error"})
+    return new ErrorHandler(error, 500) ;
   } 
 })
 
@@ -18,7 +19,7 @@ router.post('/new-author', async(req,res)=>{
         const author = await Author.create(req.body);
         res.status(201).json(author);
     }catch(error){
-        res.status(400).json({error: "invalid data"})
+        return new ErrorHandler(error, 400) ;
     }
 });
 

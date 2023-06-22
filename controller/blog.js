@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Blog = require("../model/blog");
+const ErrorHandler = require("../utils/ErrorHandler");
 
 //get all blogs
 router.get("./all-blogs", async (req, res) => {
@@ -8,7 +9,7 @@ router.get("./all-blogs", async (req, res) => {
         const blogs = await Blog.find();
         res.status(200).json(blogs);
     } catch(error){
-        res.status(500).json("Internal Server error");
+        return new ErrorHandler(error, 500) ;
     }
 })
 
@@ -18,7 +19,7 @@ router.post("./new-blog", async (req, res) => {
         const blog = await Blog.create(req.body);
         res.status(201).json(blog);
     } catch(error) {
-        res.status(400).json("Invalid data");
+        return new ErrorHandler(error, 400) ;
     }
 })
 

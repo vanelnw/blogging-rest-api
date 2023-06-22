@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const ErrorHandler = require("./middleware/error");
 
 app.use(express.json());
 
@@ -18,5 +19,8 @@ const comment = require("./controller/comment");
 app.use("/api/v1/authors", author);
 app.use("/api/v1/blogs", blog);
 app.use("/api/v1/comment", comment);
+
+//ErrorHandling
+app.use(ErrorHandler);
 
 module.exports = app;
