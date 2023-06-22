@@ -12,13 +12,13 @@ if(process.env.NODE_ENV !== "PRODUCTION"){
 }
 
 //import routes
+const user = require("./controller/user");
 const author = require("./controller/author")
 const blog = require("./controller/blog");
-const comment = require("./controller/comment");
 
+app.use("/api/v1/auth", user);
 app.use("/api/v1/authors", author);
 app.use("/api/v1/blogs", blog);
-app.use("/api/v1/comment", comment);
 
 //ErrorHandling
 app.use(ErrorHandler);
